@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx eslint src; npx jasmine",
+    "test": "npx eslint src && npx jasmine",
     "prepare": "husky install"
   },
   "author": "dearshrewdwit",
