@@ -31,11 +31,10 @@ You should be able to run this in your JS console (using your node REPL, or brow
 ```
 The Cohort Manager should be able to support the following interactions
 
-- Search for cohort by cohort name
-- Search for student by student ID
 - Create a cohort with a cohort name
-- Remove a Cohort by cohort name
+- Search for a cohort by cohort name
 - Add student to a specific cohort
+- Remove a cohort by cohort name
 - Remove student from a specific cohort
 - Return errors if student or cohort not found
 
@@ -44,6 +43,7 @@ A cohort should have a list of students. Each student should have a studentID, f
 
 #### Extended
 ```
+- Search for student by student ID
 - Cohorts have fixed capacity at 24 students. Adding students is not possible beyond the 24 limit.
 - Cohorts can't have the same name, and can't exist without a name
 - The same student can't exist in multiple cohorts.
