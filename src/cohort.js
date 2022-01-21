@@ -8,8 +8,8 @@ class Cohort {
     this.students.push(student)
   }
 
-  removeStudent () {
-
+  removeStudent (student) {
+    this.students = this.students.filter(e => e.id !== student.id)
   }
 }
 
