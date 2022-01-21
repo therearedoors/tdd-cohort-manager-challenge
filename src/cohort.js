@@ -9,7 +9,11 @@ class Cohort {
   }
 
   removeStudent (student) {
-    this.students = this.students.filter(e => e.id !== student.id)
+    const updated = this.students.filter(e => e.id !== student.id)
+    if (updated.length === this.students.length) {
+      throw new Error('Student not in cohort.')
+    }
+    this.students = updated
   }
 }
 

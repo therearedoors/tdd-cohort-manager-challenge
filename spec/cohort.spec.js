@@ -32,4 +32,11 @@ describe("Cohort", () => {
         expect(result).toEqual(expected);
     })
 
+    it("throws an error if the student isn't in the cohort", () => {
+        const expected = new Error("Student not in cohort.")
+        
+        const result = function() {cohort.removeStudent(harry)};
+        expect(result).toThrow(expected);
+    })
+
 });
