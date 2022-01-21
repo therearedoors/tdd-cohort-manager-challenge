@@ -4,8 +4,8 @@ class Cohort {
     this.students = []
   }
 
-  addStudent () {
-
+  addStudent (student) {
+    this.students.push(student)
   }
 
   removeStudent () {
