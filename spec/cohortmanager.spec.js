@@ -11,6 +11,13 @@ describe("CohortManager", () => {
         githubUserName: "boywholived",
         email: "HarryPotter@hogwarts.edu"
     }
+    const larry = {
+        id: 2,
+        firstName: "Larry",
+        lastName: "Potter",
+        githubUserName: "anotherboywholived",
+        email: "LarryPotter@hogwarts.edu"
+    }
 
 beforeEach(() => {
     cohortManager = new CohortManager
@@ -79,5 +86,18 @@ it("can create a new Cohort", () => {
         cohortManager.addStudentToCohort(harry,"Griffindor")
         const result = function() {cohortManager.addStudentToCohort(harry, "Slytherin");}
         expect(result).toThrow(expected);
+    });
+
+    it ("can search for students by name and return all matches", () => {
+        const expectedOne = [harry, larry]
+        const expectedTwo = [larry]
+        cohortManager.create("Griffindor");
+        cohortManager.create("Slytherin");
+        cohortManager.addStudentToCohort(harry,"Griffindor");
+        cohortManager.addStudentToCohort(larry,"Slytherin");
+        const resultOne = cohortManager.getStudentsByName("Potter");
+        const resultTwo = cohortManager.getStudentsByName("Larry");
+        expect(resultOne).toEqual(expectedOne);
+        expect(resultTwo).toEqual(expectedTwo);
     });
 });

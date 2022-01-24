@@ -61,5 +61,4 @@ describe("Cohort", () => {
         const result = function () {cohort.addStudent(harry,25);}
         expect(result).toThrow(expected);
     });
-
 });

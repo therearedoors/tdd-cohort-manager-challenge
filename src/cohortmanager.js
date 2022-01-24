@@ -38,11 +38,11 @@ class CohortManager {
   }
 
   addStudentToCohort (student, cohortName) {
-    for (const cohort of this.cohorts) {
+    this.cohorts.forEach(cohort => {
       if (cohort.students.includes(student)) {
         throw new Error(`Student is already in ${cohort.name} cohort.`)
       }
-    }
+    })
     const cohort = this.get(cohortName)
     cohort.addStudent(student, this.generateID())
   }
@@ -57,6 +57,15 @@ class CohortManager {
       throw new Error('No student with this ID.')
     }
     return student
+  }
+
+  getStudentsByName (name) {
+    return this.cohorts
+      .reduce((current, cohort) => {
+        current.push(cohort.students.filter(student => student.firstName === name || student.lastName === name))
+        return current
+      }, [])
+      .flat()
   }
 }
 module.exports = CohortManager
