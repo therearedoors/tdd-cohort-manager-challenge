@@ -37,16 +37,22 @@ class CohortManager {
     this.cohorts = updated
   }
 
-  addStudentToCohort (student, cohort) {
-    cohort = this.get(cohort)
+  addStudentToCohort (student, cohortName) {
+    for (const cohort of this.cohorts) {
+      if (cohort.students.includes(student)) {
+        throw new Error(`Student is already in ${cohort.name} cohort.`)
+      }
+    }
+    const cohort = this.get(cohortName)
     cohort.addStudent(student, this.generateID())
   }
 
+  getCohortByID (ID) {
+    return this.cohorts.find(cohort => cohort.students.find(student => student.id === ID))
+  }
+
   findByID (ID) {
-    let student
-    for (const cohort of this.cohorts) {
-      student = cohort.students.find(student => student.id === ID)
-    }
+    const student = this.getCohortByID(ID).students.find(student => student.id === ID)
     if (!student) {
       throw new Error('No student with this ID.')
     }

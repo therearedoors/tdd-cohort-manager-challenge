@@ -71,4 +71,13 @@ it("can create a new Cohort", () => {
         const result = function () {cohortManager.create("Griffindor");}
         expect(result).toThrow(expected);
     });
+
+    it("throws an error when trying to add students with same ID", () => {
+        const expected = new Error("Student is already in Griffindor cohort.")
+        cohortManager.create("Griffindor");
+        cohortManager.create("Slytherin");
+        cohortManager.addStudentToCohort(harry,"Griffindor")
+        const result = function() {cohortManager.addStudentToCohort(harry, "Slytherin");}
+        expect(result).toThrow(expected);
+    });
 });
