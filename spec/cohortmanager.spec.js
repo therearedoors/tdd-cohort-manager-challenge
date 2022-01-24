@@ -4,6 +4,13 @@ const Cohort = require("../src/cohort.js")
 describe("CohortManager", () => {
 
     let cohortManager
+    const harry = {
+        id: 1,
+        firstName: "Harry",
+        lastName: "Potter",
+        githubUserName: "boywholived",
+        email: "HarryPotter@hogwarts.edu"
+    }
 
 beforeEach(() => {
     cohortManager = new CohortManager
@@ -41,6 +48,27 @@ it("can create a new Cohort", () => {
     it("throws an error if it doesn't contain a cohort of that name", () => {
         const expected = new Error("No cohort of this name.");
         const result = function() {cohortManager.remove("Griffindor")};
+        expect(result).toThrow(expected);
+    });
+
+    it("can find a student by ID", () => {
+        const expected = harry;
+        cohortManager.create("Griffindor");
+        cohortManager.addStudentToCohort(harry, "Griffindor");
+        const result = cohortManager.findByID(1);
+        expect(result).toEqual(expected);
+    });
+
+    it("throws an error if no Cohort name is passed during creation", () => {
+        const expected = new Error("Cohort requires a name.");
+        const result = function () {cohortManager.create("");}
+        expect(result).toThrow(expected);
+    });
+
+    it("throws an error when trying to create a cohort with a duplicate name", () => {
+        const expected = new Error("Cohort name already in use.");
+        cohortManager.create("Griffindor");
+        const result = function () {cohortManager.create("Griffindor");}
         expect(result).toThrow(expected);
     });
 });

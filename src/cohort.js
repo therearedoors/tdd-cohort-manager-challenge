@@ -2,14 +2,19 @@ class Cohort {
   constructor (name) {
     this.name = name
     this.students = []
+    this.capacity = 24
   }
 
-  addStudent (student) {
+  addStudent (student, ID) {
+    if (this.students.length === this.capacity) {
+      throw new Error('Cohort is full.')
+    }
+    student.id = ID
     this.students.push(student)
   }
 
-  removeStudent (student) {
-    const updated = this.students.filter(e => e.id !== student.id)
+  removeStudent (ID) {
+    const updated = this.students.filter(e => e.id !== ID)
     if (updated.length === this.students.length) {
       throw new Error('Student not in cohort.')
     }
