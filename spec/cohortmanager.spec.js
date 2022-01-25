@@ -73,6 +73,16 @@ it("can create a new Cohort", () => {
         expect(result).toEqual(expected);
     });
 
+    it("can find a student by ID", () => {
+        const expected = harry;
+        cohortManager.create("Griffindor");
+        cohortManager.create("Slytherin")
+        cohortManager.addStudentToCohort(harry, "Griffindor");
+        cohortManager.addStudentToCohort(larry,"Slytherin");
+        const result = cohortManager.findByID(1);
+        expect(result).toEqual(expected);
+    });
+
     it("throws an error if no Cohort name is passed during creation", () => {
         const expected = new Error("Cohort requires a name.");
         const result = function () {cohortManager.create("");}

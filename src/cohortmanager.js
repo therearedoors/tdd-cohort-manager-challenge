@@ -48,7 +48,7 @@ class CohortManager {
   }
 
   findByID (ID) {
-    const student = this.cohorts.reduce((target, cohort) => cohort.findStudentByID(ID), undefined)
+    const student = this.cohorts.reduce((target, cohort) => cohort.findStudentByID(ID) || target, undefined)
     if (!student) {
       throw new Error('No student with this ID.')
     }
