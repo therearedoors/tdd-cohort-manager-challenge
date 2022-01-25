@@ -10,13 +10,19 @@ describe("Cohort", () => {
         githubUserName: "boywholived",
         email: "HarryPotter@hogwarts.edu"
     }
+    const larry = {
+        id: 2,
+        firstName: "Larry",
+        lastName: "Potter",
+        githubUserName: "anotherboywholived",
+        email: "LarryPotter@hogwarts.edu"
+    }
     const ron = {
         firstName: "Ron",
         lastName: "Weasley",
         githubUserName: "percyweasley",
         email: "RonWeasley@hogwarts.edu"
     }
-
 
     beforeEach(() => {
         cohort = new Cohort
@@ -60,5 +66,16 @@ describe("Cohort", () => {
         }
         const result = function () {cohort.addStudent(harry,25);}
         expect(result).toThrow(expected);
+    });
+
+    it ("can return all students with a certain name", () => {
+        const expectedOne = [harry, larry]
+        const expectedTwo = [harry]
+        cohort.addStudent(harry,1);
+        cohort.addStudent(larry,2);
+        const resultOne = cohort.getStudentsByName("Potter");
+        const resultTwo = cohort.getStudentsByName("Harry");
+        expect(resultOne).toEqual(expectedOne);
+        expect(resultTwo).toEqual(expectedTwo);
     });
 });

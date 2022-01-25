@@ -20,6 +20,14 @@ class Cohort {
     }
     this.students = updated
   }
+
+  findStudentByID (ID) {
+    return this.students.find(student => student.id === ID)
+  }
+
+  getStudentsByName (name) {
+    return this.students.filter(student => student.firstName === name || student.lastName === name);
+   }
 }
 
 module.exports = Cohort

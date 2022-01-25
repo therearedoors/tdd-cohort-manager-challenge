@@ -11,6 +11,13 @@ describe("CohortManager", () => {
         githubUserName: "boywholived",
         email: "HarryPotter@hogwarts.edu"
     }
+    const harrytwo = {
+        id: 2,
+        firstName: "Harry",
+        lastName: "Potter",
+        githubUserName: "boywholived",
+        email: "HarryPotter@hogwarts.edu"
+    }
     const larry = {
         id: 2,
         firstName: "Larry",
@@ -100,4 +107,5 @@ it("can create a new Cohort", () => {
         expect(resultOne).toEqual(expectedOne);
         expect(resultTwo).toEqual(expectedTwo);
     });
+
 });

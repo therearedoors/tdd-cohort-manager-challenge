@@ -7,8 +7,8 @@ class CohortManager {
   }
 
   generateID () {
-    this.nextID++
-    return this.nextID
+    this.nextID++;
+    return this.nextID;
   }
 
   create (name) {
@@ -47,25 +47,25 @@ class CohortManager {
     cohort.addStudent(student, this.generateID())
   }
 
-  getCohortByID (ID) {
-    return this.cohorts.find(cohort => cohort.students.find(student => student.id === ID))
-  }
-
   findByID (ID) {
-    const student = this.getCohortByID(ID).students.find(student => student.id === ID)
+    const student = this.cohorts.reduce((target, cohort) => {
+      target = cohort.findStudentByID(ID)
+      return target;
+    }, undefined);
     if (!student) {
       throw new Error('No student with this ID.')
     }
     return student
   }
 
-  getStudentsByName (name) {
+  getStudentsByName(name) {
     return this.cohorts
-      .reduce((current, cohort) => {
-        current.push(cohort.students.filter(student => student.firstName === name || student.lastName === name))
-        return current
+    .reduce((current, cohort) => {
+      const studentsFromCohort = cohort.getStudentsByName(name)
+      current = [...current, ...studentsFromCohort]
+      return current
       }, [])
-      .flat()
-  }
+   }
+
 }
 module.exports = CohortManager

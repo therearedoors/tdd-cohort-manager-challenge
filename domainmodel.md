@@ -3,7 +3,14 @@
 
 The Cohort Manager should be able to support the following interactions
 
-- Create a cohort with a cohort name /
+- Create a cohort with a cohort name
+class cohort manager
+property= list of cohorts
+method - createCohort
+object cohort
+property = name
+
+
 - Search for a cohort by cohort name /
 - Add student to a specific cohort /
 - Remove a cohort by cohort name
