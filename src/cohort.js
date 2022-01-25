@@ -26,8 +26,8 @@ class Cohort {
   }
 
   getStudentsByName (name) {
-    return this.students.filter(student => student.firstName === name || student.lastName === name);
-   }
+    return this.students.filter(student => student.firstName === name || student.lastName === name)
+  }
 }
 
 module.exports = Cohort
